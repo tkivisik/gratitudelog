@@ -35,6 +35,10 @@ type Categories map[string]Entries
 
 type Entries []Entry
 
+func (a Entries) Len() int           { return len(a) }
+func (a Entries) Swap(i, j int)      { a[i], a[j] = a[j], a[i] }
+func (a Entries) Less(i, j int) bool { return a[i] < a[j] }
+
 type Entry string
 
 func (entry Entry) Parts() []string {
