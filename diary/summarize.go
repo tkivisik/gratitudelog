@@ -27,3 +27,18 @@ func SummarizeParts(diary *Diary) map[Entry]int {
 	}
 	return summary
 }
+
+func SummarizeCategoryParts(diary *Diary, category string) map[Entry]int {
+	summary := map[Entry]int{}
+	for _, page := range diary.Pages {
+		entries := page.Categories[category]
+		for _, entry := range entries {
+			entry = diary.Relations.Resolve(entry)
+			for _, part := range entry.Prefixes() {
+				summary[Entry(part)]++
+			}
+
+		}
+	}
+	return summary
+}
