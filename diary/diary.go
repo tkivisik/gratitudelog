@@ -8,7 +8,7 @@ import (
 type Diary struct {
 	// Relations
 	Relations Relations
-	Pages     []Page
+	Pages     []*Page
 }
 
 type Relations map[string]Entry
@@ -29,6 +29,14 @@ type Page struct {
 	Date       time.Time
 	Title      string
 	Categories Categories
+}
+
+func NewPage() *Page {
+	return &Page{
+		Date:       time.Time{},
+		Title:      "",
+		Categories: make(Categories),
+	}
 }
 
 type Categories map[string]Entries
