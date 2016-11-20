@@ -5,6 +5,7 @@ func SummarizeEntries(diary *Diary) map[Entry]int {
 	for _, page := range diary.Pages {
 		for _, entries := range page.Categories {
 			for _, entry := range entries {
+				entry := diary.Relations.Resolve(entry)
 				summary[entry]++
 			}
 		}
@@ -17,7 +18,8 @@ func SummarizeParts(diary *Diary) map[string]int {
 	for _, page := range diary.Pages {
 		for _, entries := range page.Categories {
 			for _, entry := range entries {
-				for _, part := range entry.Parts() {
+				entry = diary.Relations.Resolve(entry)
+				for _, part := range entry.Prefixes() {
 					summary[part]++
 				}
 			}

@@ -7,7 +7,22 @@ import (
 
 type Diary struct {
 	// Relations
-	Pages []Page
+	Relations Relations
+	Pages     []Page
+}
+
+type Relations map[string]Entry
+
+func (relations Relations) Resolve(entry Entry) Entry {
+	parts := entry.Parts()
+	for i := len(parts) - 1; i >= 0; i-- {
+		if related, ok := relations[parts[i]]; ok {
+			relatedEntryArray := append(related.Parts(), parts[i+1:]...)
+			relatedEntryString := strings.Join(relatedEntryArray, " > ")
+			return Entry(relatedEntryString)
+		}
+	}
+	return entry
 }
 
 type Page struct {
@@ -28,4 +43,15 @@ func (entry Entry) Parts() []string {
 		parts[i] = strings.TrimSpace(part)
 	}
 	return parts
+}
+
+func (entry Entry) Prefixes() []string {
+	parts := entry.Parts()
+	prefixes := []string{}
+	for i := 0; i < len(parts); i++ {
+		prefix := strings.Join(parts[:i+1], " > ")
+		prefixes = append(prefixes, prefix)
+	}
+
+	return prefixes
 }
