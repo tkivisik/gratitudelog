@@ -13,12 +13,14 @@ Gratitude Log is a program to keep a diary of things you are grateful for, and t
 
 There is a gratitude log to JSON format converter code available. It only works when you stick to the following formatting:
 
-> M21.11.2016 - Title for the day
-> 
-> category1Name:
-> category2Name:
-> category...Name:
-> categoryNName:
+```
+M21.11.2016 - Title for the day
+
+category1Name:
+category2Name:
+category...Name:
+categoryNName:
+```
 
 * First letter of the day of week (Estonian and English are supported)
 * Date in the following format day.month.year
