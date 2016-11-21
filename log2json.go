@@ -37,7 +37,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	rxPage := regexp.MustCompile(`^[ETKNRLP](\d\d\.\d\d.\d\d\d\d)\s*\-\s*(.*)$`)
+	rxPage := regexp.MustCompile(`^[ETKNRLPMWFS](\d\d\.\d\d.\d\d\d\d)\s*\-\s*(.*)$`)
 	rxCategory := regexp.MustCompile(`^(\p{L}+)\s*:\s*(.*)$`)
 
 	var journal diary.Diary

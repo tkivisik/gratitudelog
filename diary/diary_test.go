@@ -4,7 +4,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/tkivisik/gratitudelog/diary"
+
 )
 
 var example = &diary.Diary{
