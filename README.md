@@ -30,6 +30,7 @@ categoryNName: keywords
 * Title
 * Category name (e.g. joy, develop, tip, location) followed by a colon. You can have as many categories as you wish.
 * Keywords associated with that category. 
-..* Everies are separated by a comma.
-..* First word of each entry has the highest weight.
-..* "SOCIAL > friends > John Doe time" will count John Doe time also as an entry to friends, and friends as an entry to SOCIAL. This makes it easy to keep track of where your joy comes from.
+
+ * Everies are separated by a comma.
+ * First word of each entry has the highest weight.
+ * "SOCIAL > friends > John Doe time" will count John Doe time also as an entry to friends, and friends as an entry to SOCIAL. This makes it easy to keep track of where your joy comes from.
