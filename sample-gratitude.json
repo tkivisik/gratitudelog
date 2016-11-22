@@ -1,0 +1,55 @@
+{
+    "Relations": null,
+    "Pages": [
+        {
+            "Date": "2016-11-07T00:00:00Z",
+            "Title": "Title That Summarizes Your Day",
+            "Categories": {
+                "gratitude": [
+                    "SOCIAL > friends > John time",
+					"SOCIAL > friends > Nele time",
+            		"SOCIAL > friends > Jane time",
+					"weather nice",
+					"Python time",
+                    "lunch tasty"
+                 ],
+                "geo": [
+                    "Amsterdam"
+                ]
+            }
+        },
+        {
+            "Date": "2016-11-08T00:00:00Z",
+            "Title": "Title That Summarizes Your Day 2",
+            "Categories": {
+                "gratitude": [
+                    "sunrise amazing",
+					"weather nice",
+					"SOCIAL > friends > Nele time",
+            		"SOCIAL > friends > Jane time",
+			        "lunch tasty",
+                    "evening relaxed"
+                 ],
+                "geo": [
+                    "Amsterdam"
+                ]
+            }
+        },
+        {
+            "Date": "2016-11-09T00:00:00Z",
+            "Title": "Title That Summarizes Your Day 3",
+            "Categories": {
+                "newcategory": [
+			        "categories can be added"
+                ],
+                "gratitude": [
+			        "entry 1",
+                    "last entry without a comma"
+                 ],
+                "geo": [
+                    "Amsterdam"
+                ]
+            }
+        }
+    ]
+}

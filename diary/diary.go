@@ -49,6 +49,7 @@ func (a Entries) Less(i, j int) bool { return a[i] < a[j] }
 
 type Entry string
 
+// Parts returns parts of an Entry as a slice of strings
 func (entry Entry) Parts() []string {
 	parts := strings.Split(string(entry), ">")
 	for i, part := range parts {
