@@ -14,7 +14,8 @@ import (
 	"golang.org/x/image/font/gofont/goregular"
 )
 
-func WordCloud(journal *diary.Diary) {
+// WordCloud creates a ~wordcloud.png from key-value pairs, by category. Use 'all' to include all categories.
+func WordCloud(journal *diary.Diary, category string) {
 	defaultWidth := 1024
 	defaultHeight := 1024
 	defaultOutput := "~wordcloud.png"
@@ -33,8 +34,14 @@ func WordCloud(journal *diary.Diary) {
 	}
 
 	words := make(map[string]int)
-	for entry, count := range diary.SummarizeCategoryParts(journal, "gratitude") {
-		words[string(entry)] = count
+	if category != "all" {
+		for entry, count := range diary.SummarizeCategoryParts(journal, category) {
+			words[string(entry)] = count
+		}
+	} else {
+		for entry, count := range diary.SummarizeParts(journal) {
+			words[string(entry)] = count
+		}
 	}
 
 	im := c.Generate(words)

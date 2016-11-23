@@ -1,5 +1,15 @@
 package diary
 
+import "fmt"
+
+/*
+It's meaningful to summarize:
+* All entries (with relations) in a diary SummarizeEntries
+* All parts (including SOCIAL) in a diary SummarizeParts
+* All entries in a certain category SummarizeCategoryEntries
+* All parts in a certain category SummarizeCategoryParts
+*/
+
 // SummarizeEntries summarizes the entries of the whole diary
 func SummarizeEntries(diary *Diary) map[Entry]int {
 	summary := map[Entry]int{}
@@ -61,5 +71,10 @@ func SummarizeCategoryParts(diary *Diary, category string) map[Entry]int {
 
 // SummarizeDiary summarizes and prints the whole diary
 func SummarizeDiary(journal *Diary) {
-	PrintSummarized(SummarizeEntries(journal))
+	fmt.Println("Category Entries")
+	PrintSummarized(SummarizeCategoryEntries(journal, "gratitude"))
+	fmt.Println()
+	fmt.Println("Category Parts")
+	PrintSummarized(SummarizeCategoryParts(journal, "gratitude"))
+
 }
