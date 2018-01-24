@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/tkivisik/gratitudelog/diary"
-	"github.com/tkivisik/gratitudelog/visualisation"
 )
 
 func printHelp() {
@@ -23,7 +22,7 @@ func printHelp() {
 
 func main() {
 	defaultFile := "sample-gratitude.json"
-	defaultCategory := "gratitude"
+	defaultCategory := "rõõm"
 	if len(os.Args) < 3 {
 		printHelp()
 	}
@@ -47,8 +46,6 @@ func main() {
 		diary.SummarizeDiary(journal)
 	case "summarizeGratitude":
 		fmt.Println(diary.SummarizeCategoryParts(journal, defaultCategory))
-	case "wordcloud":
-		visualisation.WordCloud(journal, defaultCategory)
 	default:
 		fmt.Println("Default: ")
 		printHelp()
