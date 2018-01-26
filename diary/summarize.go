@@ -1,6 +1,9 @@
 package diary
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 /*
 It's meaningful to summarize:
@@ -10,14 +13,20 @@ It's meaningful to summarize:
 * All parts in a certain category SummarizeCategoryParts
 */
 
+const DotWeight = 0.5
+
 // SummarizeEntries summarizes the entries of the whole diary
-func SummarizeEntries(diary *Diary) map[Entry]int {
-	summary := map[Entry]int{}
+func SummarizeEntries(diary *Diary) map[Entry]float32 {
+	summary := map[Entry]float32{}
 	for _, page := range diary.Pages {
 		for _, entries := range page.Categories {
 			for _, entry := range entries {
 				entry := diary.Relations.Resolve(entry)
-				summary[entry]++
+				if strings.HasPrefix(string(entry), ".") {
+					summary[entry] = summary[entry] + DotWeight
+				} else {
+					summary[entry]++
+				}
 			}
 		}
 	}
@@ -25,27 +34,35 @@ func SummarizeEntries(diary *Diary) map[Entry]int {
 }
 
 // SummarizeCategoryEntries summarizes the parts of only the specified category.
-func SummarizeCategoryEntries(diary *Diary, category string) map[Entry]int {
-	summary := map[Entry]int{}
+func SummarizeCategoryEntries(diary *Diary, category string) map[Entry]float32 {
+	summary := map[Entry]float32{}
 	for _, page := range diary.Pages {
 		entries := page.Categories[category]
 		for _, entry := range entries {
 			entry := diary.Relations.Resolve(entry)
-			summary[entry]++
+			if strings.HasPrefix(string(entry), ".") {
+				summary[entry] = summary[entry] + DotWeight
+			} else {
+				summary[entry]++
+			}
 		}
 	}
 	return summary
 }
 
 // SummarizeParts summarizes the parts of the whole diary
-func SummarizeParts(diary *Diary) map[Entry]int {
-	summary := map[Entry]int{}
+func SummarizeParts(diary *Diary) map[Entry]float32 {
+	summary := map[Entry]float32{}
 	for _, page := range diary.Pages {
 		for _, entries := range page.Categories {
 			for _, entry := range entries {
 				entry = diary.Relations.Resolve(entry)
 				for _, part := range entry.Prefixes() {
-					summary[Entry(part)]++
+					if strings.HasPrefix(part, ".") {
+						summary[Entry(part[1:])] += DotWeight
+					} else {
+						summary[Entry(part)]++
+					}
 				}
 			}
 		}
@@ -54,16 +71,19 @@ func SummarizeParts(diary *Diary) map[Entry]int {
 }
 
 // SummarizeCategoryParts summarizes the parts of only the specified category.
-func SummarizeCategoryParts(diary *Diary, category string) map[Entry]int {
-	summary := map[Entry]int{}
+func SummarizeCategoryParts(diary *Diary, category string) map[Entry]float32 {
+	summary := map[Entry]float32{}
 	for _, page := range diary.Pages {
 		entries := page.Categories[category]
 		for _, entry := range entries {
 			entry = diary.Relations.Resolve(entry)
 			for _, part := range entry.Prefixes() {
-				summary[Entry(part)]++
+				if strings.HasPrefix(part, ".") {
+					summary[Entry(part[1:])] = summary[Entry(part[1:])] + DotWeight
+				} else {
+					summary[Entry(part)]++
+				}
 			}
-
 		}
 	}
 	return summary

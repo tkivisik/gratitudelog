@@ -6,13 +6,13 @@ import (
 )
 
 // PrintSummarized prints formatted key-value pairs.
-func PrintSummarized(input map[Entry]int) {
+func PrintSummarized(input map[Entry]float32) {
 	keys := make(Entries, 0, len(input))
 	for k := range input {
 		keys = append(keys, k)
 	}
 	sort.Sort(keys)
 	for _, entry := range keys {
-		fmt.Println(input[entry], " : ", entry)
+		fmt.Printf("%5.1f : %v\n", input[entry], entry)
 	}
 }
