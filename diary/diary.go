@@ -32,16 +32,18 @@ func (relations Relations) Resolve(entry Entry) Entry {
 
 // Page contains the date, title and categories for a day
 type Page struct {
-	Date       time.Time
-	Title      string
-	Categories Categories
+	Date        time.Time
+	DateWritten time.Time
+	Title       string
+	Categories  Categories
 }
 
 func NewPage() *Page {
 	return &Page{
-		Date:       time.Time{},
-		Title:      "",
-		Categories: make(Categories),
+		Date:        time.Time{},
+		DateWritten: time.Time{},
+		Title:       "",
+		Categories:  make(Categories),
 	}
 }
 
