@@ -24,7 +24,7 @@ func printHelp() {
 
 func main() {
 	defaultFile := "sample-gratitude.json"
-	defaultCategory := "rõõm"
+	defaultCategory := "gratitude"
 	if len(os.Args) < 3 {
 		printHelp()
 	}
